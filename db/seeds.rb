@@ -9,10 +9,13 @@
 GameSkill.destroy_all
 Game.destroy_all
 ChallengeSkill.destroy_all
+Constraint.destroy_all
 Challenge.destroy_all
 Skill.destroy_all
 Mission.destroy_all
 User.destroy_all
+
+categories = ["Faire", "Imaginer", "M'inspirer"]
 
 u1 = User.create( email: "a@gmail.com",
               password: "azerty",
@@ -36,7 +39,7 @@ c1 = Challenge.create( mission: m1,
                                 Repellendus mollitia impedit sed dolorem nihil dolore,
                                 veritatis ex eveniet fugiat cumque magni, consequatur
                                 repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
-                  technician: true
+                  category: categories[0]
                 )
 
 c2 = Challenge.create( mission: m1,
@@ -45,7 +48,7 @@ c2 = Challenge.create( mission: m1,
                                 Repellendus mollitia impedit sed dolorem nihil dolore,
                                 veritatis ex eveniet fugiat cumque magni, consequatur
                                 repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
-                  technician: true
+                  category: categories[1]
                 )
 
 c3 = Challenge.create( mission: m2,
@@ -54,7 +57,7 @@ c3 = Challenge.create( mission: m2,
                                 Repellendus mollitia impedit sed dolorem nihil dolore,
                                 veritatis ex eveniet fugiat cumque magni, consequatur
                                 repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
-                  technician: false
+                  category: categories[1]
                 )
 
 cs1 = ChallengeSkill.create( challenge: c1,
@@ -73,9 +76,22 @@ cs3 = ChallengeSkill.create( challenge: c3,
                        skill: s3
                       )
 
+co1 = Constraint.create( title: "Licorne",
+                         challenge: c1
+                        )
+
+co2 = Constraint.create( title: "Robot",
+                         challenge: c1
+                        )
+
+co3 = Constraint.create( title: "Ta maman qui envoie un sms",
+                         challenge: c1
+                        )
+
 g1 = Game.create( user: u1,
-             challenge: c1
-            )
+                  challenge: c1,
+                  constraint: co2
+                )
 
 GameSkill.create( mentor: u2,
                   game: g1,
