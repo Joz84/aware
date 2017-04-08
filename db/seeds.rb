@@ -18,12 +18,16 @@ User.destroy_all
 categories = ["Faire", "Imaginer", "M'inspirer"]
 
 u1 = User.create( email: "a@gmail.com",
-              password: "azerty",
-            )
+                  password: "azerty",
+                  first_name: "Flo",
+                  last_name: "Laura"
+                )
 
 u2 = User.create( email: "b@gmail.com",
-              password: "azerty",
-            )
+                  password: "azerty",
+                  first_name: "Anne",
+                  last_name: "Sibylle"
+                )
 
 
 s1 = Skill.create(title: "raper les carottes")
