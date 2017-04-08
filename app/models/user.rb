@@ -8,5 +8,13 @@ class User < ApplicationRecord
   has_many :games
   has_many :game_skills, through: :games
   has_many :skills, through: :game_skills
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :last_name, uniqueness: { scope: :first_name }
+
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
 
 end
