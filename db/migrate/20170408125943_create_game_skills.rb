@@ -3,8 +3,7 @@ class CreateGameSkills < ActiveRecord::Migration[5.0]
     create_table :game_skills do |t|
       t.references :game, foreign_key: true
       t.references :skill, foreign_key: true
-      t.references :user, foreign_key: true
-      t.string :title
+      t.references :mentor
       t.integer :rating
 
       t.timestamps

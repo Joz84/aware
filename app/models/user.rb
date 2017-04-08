@@ -3,4 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :mentor_game_skills, foreign_key: :mentor_id, class_name: "GameSkill"
+  has_many :games
+  has_many :game_skills, through: :games
+  has_many :skills, through: :game_skills
+
 end

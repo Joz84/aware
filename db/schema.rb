@@ -37,14 +37,13 @@ ActiveRecord::Schema.define(version: 20170408125943) do
   create_table "game_skills", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "skill_id"
-    t.integer  "user_id"
-    t.string   "title"
+    t.integer  "mentor_id"
     t.integer  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_skills_on_game_id", using: :btree
+    t.index ["mentor_id"], name: "index_game_skills_on_mentor_id", using: :btree
     t.index ["skill_id"], name: "index_game_skills_on_skill_id", using: :btree
-    t.index ["user_id"], name: "index_game_skills_on_user_id", using: :btree
   end
 
   create_table "games", force: :cascade do |t|
@@ -90,7 +89,6 @@ ActiveRecord::Schema.define(version: 20170408125943) do
   add_foreign_key "challenges", "missions"
   add_foreign_key "game_skills", "games"
   add_foreign_key "game_skills", "skills"
-  add_foreign_key "game_skills", "users"
   add_foreign_key "games", "challenges"
   add_foreign_key "games", "users"
 end
