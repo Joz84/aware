@@ -10,10 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408124053) do
+ActiveRecord::Schema.define(version: 20170408125943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "challenge_skills", force: :cascade do |t|
+    t.integer  "skill_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["challenge_id"], name: "index_challenge_skills_on_challenge_id", using: :btree
+    t.index ["skill_id"], name: "index_challenge_skills_on_skill_id", using: :btree
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.integer  "mission_id"
+    t.boolean  "technician"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["mission_id"], name: "index_challenges_on_mission_id", using: :btree
+  end
+
+  create_table "game_skills", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "skill_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_skills_on_game_id", using: :btree
+    t.index ["skill_id"], name: "index_game_skills_on_skill_id", using: :btree
+    t.index ["user_id"], name: "index_game_skills_on_user_id", using: :btree
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["challenge_id"], name: "index_games_on_challenge_id", using: :btree
+    t.index ["user_id"], name: "index_games_on_user_id", using: :btree
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,4 +85,12 @@ ActiveRecord::Schema.define(version: 20170408124053) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "challenge_skills", "challenges"
+  add_foreign_key "challenge_skills", "skills"
+  add_foreign_key "challenges", "missions"
+  add_foreign_key "game_skills", "games"
+  add_foreign_key "game_skills", "skills"
+  add_foreign_key "game_skills", "users"
+  add_foreign_key "games", "challenges"
+  add_foreign_key "games", "users"
 end
