@@ -4,6 +4,16 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+body {
+  text-align: center;
+}
+
+h1 {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
 // Paddings
 .padded {
   padding-top: 5em;
@@ -18,8 +28,13 @@
   background: #aeaeae;
 }
 .bg-blue {
-  background: #00a3e1;
+  background: $blue;
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+.aware-wrapper {
+  height: 100vh;
+  padding-top: 100px;
 }
