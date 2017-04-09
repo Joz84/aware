@@ -5,10 +5,11 @@
   <% end %>
 
   <% unless current_user.nil? %>
-    <%= cl_image_tag current_user.photo.path, class: "avatar", crop: :fill %>
     <div><%= current_user.pseudo %></div>
+    <% unless current_user.photo.nil? %>
+      <%= cl_image_tag current_user.photo.path, class: "avatar", crop: :fill %>
+    <% end %>
   <% end %>
-
 
   <div class="dropdown">
     <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
