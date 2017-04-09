@@ -1,14 +1,12 @@
-<div class="navbar-wagon-fixed">
+<div class="navbar-wagon bg-blue">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+
+  <% if !current_user.nil? && !current_user.photo.nil? %>
+      <%= cl_image_tag current_user.photo.path, class: "avatar", crop: :fill %>
   <% end %>
 
-  <% unless current_user.nil? %>
-    <div><%= current_user.pseudo %></div>
-    <% unless current_user.photo.nil? %>
-      <%= cl_image_tag current_user.photo.path, class: "avatar", crop: :fill %>
-    <% end %>
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "logo.png" %>
   <% end %>
 
   <div class="dropdown">
