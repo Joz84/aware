@@ -10,9 +10,12 @@
     <% @game.game_skills.each do |gskill| %>
       <div class="row">
         <div class="col-xs-4">
-          <h2><%= gskill.skill.title %></h2>
+          <p class="game-show"><%= gskill.skill.title %></p>
         </div>
-        <div class="col-xs-6"><%= gskill.rating %></div>
+      <!--   <div class="col-xs-6 rating"><%= gskill.rating %></div> -->
+      <div class="col-xs-6 rating">
+        .
+      </div>
           <%= link_to "https://www.facebook.com/messages/t/566298426", target: :_blank  do %>
             HELP!
           <% end %>
@@ -24,14 +27,39 @@
 
 
   <% if @game.constraint %>
+
+    <h2>VOICI LE DESCRIPTIF DE TA MISSION</h2>
+
+    <p>Tu dois travailler sur le storytelling d'un "vlog" avec comme contrainte :</p>
     <p>contrainte: <%= @game.constraint.title %></p>
     <p>A toi de jouer!</p>
   <% else %>
   <!-- Button trigger modal -->
+    <h2>HÉHÉ TU VEUX ÊTRE UN WINNER ?</h2>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      Launch demo modal
+      CLIC ICI!
     </button>
   <% end %>
+
+<div class="container" style="margin-top: 50px;">
+    <div class="share-links">
+  <a href="#" class="share-link bg-facebook">
+    <i class="fa fa-facebook"></i>
+  </a>
+  <a href="#" class="share-link bg-twitter">
+    <i class="fa fa-twitter"></i>
+  </a>
+  <a href="#" class="share-link bg-email">
+    <i class="fa fa-envelope-o"></i>
+  </a>
+  <a href="#" class="share-link bg-text">
+    <i class="fa fa-mobile"></i>
+  </a>
+</div>
+</div>
+
+
+</div>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,4 +84,4 @@
       </div>
     </div>
   </div>
-</div>
+
