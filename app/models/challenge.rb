@@ -6,7 +6,7 @@ class Challenge < ApplicationRecord
   has_many :constraints
   validates :title, presence: true
   validates :title, uniqueness: true
-  validates :description, presence: true
+  # validates :description, presence: true
 
   include PgSearch
   pg_search_scope :pgsearch,
