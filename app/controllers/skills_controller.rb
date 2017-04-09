@@ -5,7 +5,6 @@ class SkillsController < ApplicationController
                    .where({challenges: { category: session["category"] }})
                    .uniq
                    .shuffle[0..3]
-    raise
   end
 
 end

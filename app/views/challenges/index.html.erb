@@ -1,13 +1,28 @@
+<div class="aware-wrapper bg-green">
+<h1>Ta mission est :</h1>
 <h1><%= @title %></h1>
 
-<h2>Quel défi veux tu relever ?</h2>
+<h2>Pour réaliser cette mission,</h2>
+<h2>choisis entre les différentes étapes</h2>
+<h2>proposées ci-dessous.</h2>
+
+  <div class="container">
+
+    <div class="row">
 
 <% if @challenges.empty? %>
   <p>rien trouvé...</p>
 <% else %>
   <%= simple_form_for :selected_challenge, url: games_path, method: :post do |f| %>
     <% @challenges.each do |challenge| %>
-      <%= f.button :submit, challenge.title %>
+        <div class="col-xs-12">
+          <%= f.submit challenge.title, class: "aware-button btn btn-default"  %>
+        </div>
     <% end %>
   <% end %>
 <% end %>
+
+    </div>
+  </div>
+</div>
+

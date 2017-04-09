@@ -1,17 +1,25 @@
 
+<div class="aware-wrapper bg-orange">
 
-<h1>Choisis les compétences que tu veux travailler</h1>
+  <h1>Choisis les compétences que tu veux travailler</h1>
 
-<%= simple_form_for :selected_skill, url: challenges_index_path, method: :get do |f| %>
-  <% @skills.each do |skill| %>
-    <%= f.button :submit, skill.title %>
+
+  <div class="container">
+
+    <%= simple_form_for :selected_skill, url: challenges_index_path, method: :get do |f| %>
+    <div class="row">
+      <% @skills.each do |skill| %>
+        <div class="col-xs-12">
+        <%= f.submit skill.title, class: "aware-button btn btn-default"  %>
+        </div>
+      <% end %>
+    </div>
+    <div class="research">
+    <%= f.input :words, input_html: { class: "search" }, label: false, placeholder: "ex : créer une vidéo" %>
+    <button type="submit" class="btn btn-default" style="margin-bottom: 15px;">
+      <i class="fa fa-search"></i>
+    </button>
+    </div>
   <% end %>
-
-  <%= f.input :words, input_html: { class: "search" }, label: false, placeholder: "ex : bière gironde..." %>
-  <button type="submit" class="map-btn">
-    <i class="fa fa-search"></i>
-  </button>
-<% end %>
-
-
-
+  </div>
+</div>
