@@ -2,9 +2,12 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Raleway:400,100,300,700,500");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 $base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Raleway", "Helvetica", "sans-serif";
+// $header-font: "Raleway", "Helvetica", "sans-serif";
+$header-font: "Open Sans", "Helvetica", "sans-serif";
+
 
 // Local fonts (uncomment following lines)
 // @font-face {
@@ -24,11 +27,13 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
-$brand-color: #D23333;
 
 $red: #EE5F5B;
-$blue: #469AE0;
-$yellow: #FDB631;
-$orange: #E67E22;
 $green: #32B796;
 $gray: #000000;
+$blue: #abf4e5;
+$yellow: #fcfc68;
+$blue2: #93f4d1;
+$grey: #757f86;
+$orange: #efb05f;
+$turquoise: #5fe8b4;
