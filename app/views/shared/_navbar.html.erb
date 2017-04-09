@@ -4,6 +4,8 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
+  <%= cl_image_tag current_user.photo.path, class: "avatar", crop: :fill %>
+
   <div class="dropdown">
     <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
     <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">

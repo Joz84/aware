@@ -5,9 +5,11 @@
 
   <div class="form-inputs">
     <%= f.input :pseudo, required: true, autofocus: true %>
+    <%= f.input :photo, as: :attachinary %>
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true %>
+
   </div>
 
   <div class="form-actions">

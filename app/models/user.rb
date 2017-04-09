@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_attachment :photo
+
   has_many :mentor_game_skills, foreign_key: :mentor_id, class_name: "GameSkill"
   has_many :games
   has_many :game_skills, through: :games
