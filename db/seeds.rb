@@ -17,50 +17,45 @@ User.destroy_all
 
 categories = ["Faire", "Imaginer", "M'inspirer"]
 
-u1 = User.create( email: "a@gmail.com",
+u1 = User.create( email: "mathieu33@gmail.com",
                   password: "azerty",
-                  first_name: "Flo",
-                  last_name: "Laura"
+                  pseudo: "Mathieu33",
+                  photo_url: 'http://infused.sens-media.com/wp-content/uploads/2017/01/c68dydo8nqe-jake-young-e1484753790702.jpg'
                 )
 
-u2 = User.create( email: "b@gmail.com",
+u2 = User.create( email: "norman@gmail.com",
                   password: "azerty",
-                  first_name: "Anne",
-                  last_name: "Sibylle"
+                  pseudo: "Norman",
+                  photo_url: "https://pbs.twimg.com/profile_images/828193179421794304/5ccbnMNS.jpg"
+                )
+u3 = User.create( email: "papy@gmail.com",
+                  password: "azerty",
+                  pseudo: "Papy",
+                  photo_url: "https://treizhebdo.files.wordpress.com/2016/02/papy-web.png"
                 )
 
+s1 = Skill.create(title: "Créativité")
+s2 = Skill.create(title: "Logique")
+s3 = Skill.create(title: "Agilité")
 
-s1 = Skill.create(title: "raper les carottes")
-s2 = Skill.create(title: "enlever les crottes de nez")
-s3 = Skill.create(title: "sortir les poubelles en porte jartelle")
-
-m1 = Mission.create(title: "Gérer la cuisine")
-m2 = Mission.create(title: "Avoir un nez propre")
+m1 = Mission.create(title: "Créer un VLOG")
+# m2 = Mission.create(title: "")
 
 c1 = Challenge.create( mission: m1,
-                  title: "avec des ciseaux",
-                  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repellendus mollitia impedit sed dolorem nihil dolore,
-                                veritatis ex eveniet fugiat cumque magni, consequatur
-                                repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
-                  category: categories[0]
-                )
-
-c2 = Challenge.create( mission: m1,
-                  title: "en petite tenue",
-                  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repellendus mollitia impedit sed dolorem nihil dolore,
-                                veritatis ex eveniet fugiat cumque magni, consequatur
-                                repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
+                  title: "CREER LE STORYTELLING",
+                  description: "",
                   category: categories[1]
                 )
 
-c3 = Challenge.create( mission: m2,
-                  title: "comme le reste de la figure",
-                  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Repellendus mollitia impedit sed dolorem nihil dolore,
-                                veritatis ex eveniet fugiat cumque magni, consequatur
-                                repudiandae neque, soluta inventore saepe minus corporis. Beatae.",
+c2 = Challenge.create( mission: m1,
+                  title: "CREER LA SCENOGRAPHIE",
+                  description: "",
+                  category: categories[1]
+                )
+
+c3 = Challenge.create( mission: m1,
+                  title: "CREER UN UNIVERS GRAPHIQUE",
+                  description: "",
                   category: categories[1]
                 )
 
@@ -68,16 +63,16 @@ cs1 = ChallengeSkill.create( challenge: c1,
                        skill: s1
                       )
 
-cs2 = ChallengeSkill.create( challenge: c2,
+cs2 = ChallengeSkill.create( challenge: c1,
                        skill: s2
                       )
 
-cs3 = ChallengeSkill.create( challenge: c2,
-                       skill: s1
+cs3 = ChallengeSkill.create( challenge: c1,
+                       skill: s3
                       )
 
 cs3 = ChallengeSkill.create( challenge: c3,
-                       skill: s3
+                       skill: s1
                       )
 
 co1 = Constraint.create( title: "Licorne",
@@ -88,22 +83,28 @@ co2 = Constraint.create( title: "Robot",
                          challenge: c1
                         )
 
-co3 = Constraint.create( title: "Ta maman qui envoie un sms",
+co3 = Constraint.create( title: "Ta maman qui t'envoie un sms",
                          challenge: c1
                         )
 
-g1 = Game.create( user: u1,
+g1 = Game.create( user: u2,
                   challenge: c1,
                   constraint: co2
                 )
 
-GameSkill.create( mentor: u2,
+GameSkill.create( mentor: u3,
                   game: g1,
                   skill: s1,
                   rating: 10
                   )
 
-GameSkill.create( mentor: u2,
+GameSkill.create( mentor: u3,
                   game: g1,
-                  skill: s2
+                  skill: s2,
+                  rating: 8
+                  )
+GameSkill.create( mentor: u3,
+                  game: g1,
+                  skill: s3,
+                  rating: 9
                   )
