@@ -1,11 +1,17 @@
-<h1>Skills#index</h1>
+
 
 <h1>Choisis les compétences que tu veux travailler</h1>
 
-<%= simple_form_for :search, url: skills_index_path, method: :get do |f| %>
+<%= simple_form_for :selected_skill, url: challenges_index_path, method: :get do |f| %>
   <% @skills.each do |skill| %>
-    <%= f.button :submit, "Faire" %>
+    <%= f.button :submit, skill.title %>
   <% end %>
+
+  <%= f.input :words, input_html: { class: "search" }, label: false, placeholder: "ex : bière gironde..." %>
+  <button type="submit" class="map-btn">
+    <i class="fa fa-search"></i>
+  </button>
 <% end %>
+
 
 

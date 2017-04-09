@@ -1,0 +1,43 @@
+<h2>Grâce à cette mission tu développeras ces compétences</h2>
+
+<% @game.game_skills.each do |gskill| %>
+  <h2><%= gskill.skill.title %></h2>
+  <div><%= gskill.rating %></div>
+  <%= link_to "https://www.facebook.com/messages/t/566298426", target: :_blank  do %>
+    test
+  <% end %>
+<% end %>
+
+<% if @game.constraint %>
+  <p>contrainte: <%= @game.constraint.title %></p>
+  <p>A toi de jouer!</p>
+<% else %>
+<!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Chiche ou pas chiche</h5>
+        <p>de mettre ça dans ton challenge ?</p>
+      </div>
+      <div class="modal-body">
+
+        <%= simple_form_for @game do |f| %>
+          <% @game.challenge.constraints.each do |constraint| %>
+            <%= f.button :submit, constraint.title %>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
