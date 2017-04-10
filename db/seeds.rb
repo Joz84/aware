@@ -19,18 +19,18 @@ categories = ["Faire", "Imaginer", "M'inspirer"]
 
 u1 = User.create( email: "mathieu33@gmail.com",
                   password: "azerty",
-                  pseudo: "Mathieu33",
+                  first_name: "Mathieu33",
                   photo_url: 'http://infused.sens-media.com/wp-content/uploads/2017/01/c68dydo8nqe-jake-young-e1484753790702.jpg'
                 )
 
 u2 = User.create( email: "norman@gmail.com",
                   password: "azerty",
-                  pseudo: "Norman",
+                  first_name: "Norman",
                   photo_url: "https://pbs.twimg.com/profile_images/828193179421794304/5ccbnMNS.jpg"
                 )
 u3 = User.create( email: "papy@gmail.com",
                   password: "azerty",
-                  pseudo: "Papy",
+                  first_name: "Papy",
                   photo_url: "https://treizhebdo.files.wordpress.com/2016/02/papy-web.png"
                 )
 
