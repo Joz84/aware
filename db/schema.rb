@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(version: 20170410160312) do
     t.string   "facebook_picture_url"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "gender"
+    t.datetime "birthday"
     t.string   "token"
     t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
