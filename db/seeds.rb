@@ -13,98 +13,110 @@ Constraint.destroy_all
 Challenge.destroy_all
 Skill.destroy_all
 Mission.destroy_all
+Category.destroy_all
 User.destroy_all
 
 categories = ["Faire", "Imaginer", "M'inspirer"]
 
-u1 = User.create( email: "mathieu33@gmail.com",
-                  password: "azerty",
-                  first_name: "Mathieu33",
-                  photo_url: 'http://infused.sens-media.com/wp-content/uploads/2017/01/c68dydo8nqe-jake-young-e1484753790702.jpg'
+categories.each { |category| Category.new(title: category) }
+
+admin = User.create(  email: "admin@a-waree.io",
+                      password: "azerty",
+                      first_name: "admin",
+                      last_name: "a-waree",
+                      facebook_picture_url: 'http://www.cerbobillot.fr/images/pages/autocollant-a-jeune-conducteur.jpg',
+                      admin: true
                 )
 
-u2 = User.create( email: "norman@gmail.com",
-                  password: "azerty",
-                  first_name: "Norman",
-                  photo_url: "https://pbs.twimg.com/profile_images/828193179421794304/5ccbnMNS.jpg"
-                )
-u3 = User.create( email: "papy@gmail.com",
-                  password: "azerty",
-                  first_name: "Papy",
-                  photo_url: "https://treizhebdo.files.wordpress.com/2016/02/papy-web.png"
-                )
 
-s1 = Skill.create(title: "Créativité")
-s2 = Skill.create(title: "Logique")
-s3 = Skill.create(title: "Agilité")
+# u1 = User.create( email: "mathieu33@gmail.com",
+#                   password: "azerty",
+#                   first_name: "Mathieu33",
+#                   photo_url: 'http://infused.sens-media.com/wp-content/uploads/2017/01/c68dydo8nqe-jake-young-e1484753790702.jpg'
+#                 )
 
-m1 = Mission.create(title: "Créer un VLOG")
-# m2 = Mission.create(title: "")
+# u2 = User.create( email: "norman@gmail.com",
+#                   password: "azerty",
+#                   first_name: "Norman",
+#                   photo_url: "https://pbs.twimg.com/profile_images/828193179421794304/5ccbnMNS.jpg"
+#                 )
+# u3 = User.create( email: "papy@gmail.com",
+#                   password: "azerty",
+#                   first_name: "Papy",
+#                   photo_url: "https://treizhebdo.files.wordpress.com/2016/02/papy-web.png"
+#                 )
 
-c1 = Challenge.create( mission: m1,
-                  title: "CREER LE STORYTELLING",
-                  description: "",
-                  category: categories[1]
-                )
+# s1 = Skill.create(title: "Créativité")
+# s2 = Skill.create(title: "Logique")
+# s3 = Skill.create(title: "Agilité")
 
-c2 = Challenge.create( mission: m1,
-                  title: "CREER LA SCENOGRAPHIE",
-                  description: "",
-                  category: categories[1]
-                )
+# m1 = Mission.create(title: "Créer un VLOG")
+# # m2 = Mission.create(title: "")
 
-c3 = Challenge.create( mission: m1,
-                  title: "CREER UN UNIVERS GRAPHIQUE",
-                  description: "",
-                  category: categories[1]
-                )
+# c1 = Challenge.create( mission: m1,
+#                   title: "CREER LE STORYTELLING",
+#                   description: "",
+#                   category: categories[1]
+#                 )
 
-cs1 = ChallengeSkill.create( challenge: c1,
-                       skill: s1
-                      )
+# c2 = Challenge.create( mission: m1,
+#                   title: "CREER LA SCENOGRAPHIE",
+#                   description: "",
+#                   category: categories[1]
+#                 )
 
-cs2 = ChallengeSkill.create( challenge: c1,
-                       skill: s2
-                      )
+# c3 = Challenge.create( mission: m1,
+#                   title: "CREER UN UNIVERS GRAPHIQUE",
+#                   description: "",
+#                   category: categories[1]
+#                 )
 
-cs3 = ChallengeSkill.create( challenge: c1,
-                       skill: s3
-                      )
+# cs1 = ChallengeSkill.create( challenge: c1,
+#                        skill: s1
+#                       )
 
-cs3 = ChallengeSkill.create( challenge: c3,
-                       skill: s1
-                      )
+# cs2 = ChallengeSkill.create( challenge: c1,
+#                        skill: s2
+#                       )
 
-co1 = Constraint.create( title: "Licorne",
-                         challenge: c1
-                        )
+# cs3 = ChallengeSkill.create( challenge: c1,
+#                        skill: s3
+#                       )
 
-co2 = Constraint.create( title: "Robot",
-                         challenge: c1
-                        )
+# cs3 = ChallengeSkill.create( challenge: c3,
+#                        skill: s1
+#                       )
 
-co3 = Constraint.create( title: "Ta maman qui t'envoie un sms",
-                         challenge: c1
-                        )
+# co1 = Constraint.create( title: "Licorne",
+#                          challenge: c1
+#                         )
 
-g1 = Game.create( user: u2,
-                  challenge: c1,
-                  constraint: co2
-                )
+# co2 = Constraint.create( title: "Robot",
+#                          challenge: c1
+#                         )
 
-GameSkill.create( mentor: u3,
-                  game: g1,
-                  skill: s1,
-                  rating: 10
-                  )
+# co3 = Constraint.create( title: "Ta maman qui t'envoie un sms",
+#                          challenge: c1
+#                         )
 
-GameSkill.create( mentor: u3,
-                  game: g1,
-                  skill: s2,
-                  rating: 8
-                  )
-GameSkill.create( mentor: u3,
-                  game: g1,
-                  skill: s3,
-                  rating: 9
-                  )
+# g1 = Game.create( user: u2,
+#                   challenge: c1,
+#                   constraint: co2
+#                 )
+
+# GameSkill.create( mentor: u3,
+#                   game: g1,
+#                   skill: s1,
+#                   rating: 10
+#                   )
+
+# GameSkill.create( mentor: u3,
+#                   game: g1,
+#                   skill: s2,
+#                   rating: 8
+#                   )
+# GameSkill.create( mentor: u3,
+#                   game: g1,
+#                   skill: s3,
+#                   rating: 9
+#                   )
