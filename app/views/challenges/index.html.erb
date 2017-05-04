@@ -1,10 +1,5 @@
 <div class="aware-wrapper bg-green">
-<h1>Ta mission est :</h1>
-<h1><%= @title %></h1>
-
-<h2>Pour réaliser cette mission,</h2>
-<h2>choisis entre les différentes étapes</h2>
-<h2>proposées ci-dessous.</h2>
+<h1>Choisi une action :</h1>
 
   <div class="container">
 
@@ -12,6 +7,7 @@
 
 <% if @challenges.empty? %>
   <p>rien trouvé...</p>
+  <%= link_to "essaye à nouveau", root_path %>
 <% else %>
   <%= simple_form_for :selected_challenge, url: games_path, method: :post do |f| %>
     <% @challenges.each do |challenge| %>

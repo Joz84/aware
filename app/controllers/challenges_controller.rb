@@ -1,23 +1,24 @@
 class ChallengesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index ]
+
   def index
-    if params["commit"]
-      @mission = Mission.joins(:skills)
-                        .where(skills: { title: params["commit"] })
-                        .joins(:challenges)
-                        .where({challenges: { category: session["category"] }})
-                        .sample
-      @title = @mission.title
-      @challenges = Challenge.where(mission: @mission, category: session["category"] )
+    if params["commit"] == "Mes missions inachenées"
+      if current_user
+        @challenges = current_user.unfinished_challenges.sample(3)
+      else
+        redirect_to new_user_session_path
+      end
+    elsif params["commit"] == "M'inspirer"
+      @challenges = Challenge.all.sample(3)
     else
-      @title = "Résultats de ta recherche"
-      @challenges = Challenge.pgsearch(skill_params[:words])
+      @challenges = Challenge.pgsearch(challenges_params[:words]).sample(3)
     end
   end
 
   private
 
-  def skill_params
-    params.require(:selected_skill).permit(:words)
+  def challenges_params
+    params.require(:selected_challenges).permit(:words)
   end
 
 end

@@ -35,3 +35,5 @@ end
 
 gem 'pg_search'
 gem 'omniauth-facebook'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'

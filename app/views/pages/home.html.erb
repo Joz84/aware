@@ -1,30 +1,27 @@
-
-
-
-
 <div class="aware-wrapper bg-blue">
 
 <h1><span>S</span>ALUT <%= current_user.first_name.upcase if current_user %>,</h1>
-<h1>QUE VEUX-TU</h1>
-<h1>TESTER AUJOURD'HUI</h1>
+<h1>À QUELLE ACTION VEUX TU</h1>
+<h1>T'ATTAQUER AUJOURD'HUI ?</h1>
 
   <div class="container">
-    <div class="row">
-      <%= simple_form_for :search, url: skills_index_path, method: :get do |f| %>
-        <div class="col-xs-12">
-          <%= f.submit "Faire", class: "aware-button btn btn-default"  %>
-        </div>
-        <div class="col-xs-12">
-          <%= f.submit "Imaginer", class: "aware-button btn btn-default"  %>
-        </div>
-        <div class="col-xs-12">
-          <%= f.submit "M'inspirer", class: "aware-button btn btn-default" %>
 
-        </div>
-      <% end %>
+    <%= simple_form_for :selected_challenges, url: challenges_path, method: :get do |f| %>
+      <div class="research">
+        <%= f.input :words, input_html: { class: "search" }, label: false, placeholder: "ex : créer une vidéo" %>
+        <button type="submit" class="btn btn-default" style="margin-bottom: 15px;">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <div class="row">
+          <div class="col-xs-12">
+            <%= f.submit "Mes missions inachenées", class: "aware-button btn btn-default"  %>
+          </div>
+          <div class="col-xs-12">
+            <%= f.submit "M'inspirer", class: "aware-button btn btn-default"  %>
+          </div>
+      </div>
 
-    </div>
+    <% end %>
   </div>
 </div>
-
-

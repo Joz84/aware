@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   resources :games, only: [:create, :show, :update]
-  get 'games/:id/chat', to: "games#chat", as: "chat"
-  get 'challenges/index'
-  get 'skills/index'
+
+  # get 'games/:id/chat', to: "games#chat", as: "chat"
+  resources :challenges, only: [:index]
+  # get 'challenges/index'
+  # get 'skills/index'
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'

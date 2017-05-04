@@ -1,0 +1,30 @@
+
+
+
+
+<div class="aware-wrapper bg-blue">
+
+<h1><span>S</span>ALUT <%= current_user.first_name.upcase if current_user %>,</h1>
+<h1>QUE VEUX-TU</h1>
+<h1>TESTER AUJOURD'HUI</h1>
+
+  <div class="container">
+    <div class="row">
+      <%= simple_form_for :search, url: skills_index_path, method: :get do |f| %>
+        <div class="col-xs-12">
+          <%= f.submit "Faire", class: "aware-button btn btn-default"  %>
+        </div>
+        <div class="col-xs-12">
+          <%= f.submit "Imaginer", class: "aware-button btn btn-default"  %>
+        </div>
+        <div class="col-xs-12">
+          <%= f.submit "M'inspirer", class: "aware-button btn btn-default" %>
+
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
