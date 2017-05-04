@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :games
   has_many :game_skills, through: :games
   has_many :skills, through: :game_skills
+  has_many :messages
   belongs_to :specialty, class_name: "Skill"
   # validates :first_name, presence: true
   # validates :pseudo, presence: true

@@ -3,4 +3,5 @@ class GameSkill < ApplicationRecord
   belongs_to :skill
   belongs_to :mentor, class_name: "User"
   has_one :user, through: :game
+  has_many :messages
 end

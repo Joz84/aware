@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-
   ActiveAdmin.routes(self)
   resources :games, only: [:create, :show, :update]
-
+  resources :game_skills, only: [] do
+    resources :messages, only: [:create, :index, :destroy]
+  end
   # get 'games/:id/chat', to: "games#chat", as: "chat"
   resources :challenges, only: [:index]
   # get 'challenges/index'
