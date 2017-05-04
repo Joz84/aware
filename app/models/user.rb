@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :games
   has_many :game_skills, through: :games
   has_many :skills, through: :game_skills
+  belongs_to :specialty, class_name: "Skill"
   # validates :first_name, presence: true
   # validates :pseudo, presence: true
   # validates :pseudo, uniqueness: true
@@ -42,5 +43,40 @@ class User < ApplicationRecord
     return user
   end
 
+  def unfinished_challenges
+    games
+    .select { |game| !game.done? }
+    .map(&:challenge)
+  end
+
+  def potential_mentors(skill)
+    User.where.not(id: self.id)
+        .joins(:game_skills)
+        .where(game_skills: { skill: skill })
+        .where.not(game_skills: { rating: nil })
+        .select { |user| user.mentor?(skill) }
+  end
+
+  def ratings(skill)
+    ratings = GameSkill.where(skill: skill)
+                       .where.not(rating: nil)
+                       .joins(:game)
+                       .where(games: {user: self})
+                       .map(&:rating)
+  end
+
+  def average(skill)
+    ratings = ratings(skill)
+    ratings.size >= 3 ? ratings.reduce(:+).to_f / ratings.size : false
+  end
+
+  def mentor?(skill)
+    average = average(skill)
+    (average && average >= 8) ? average : false
+  end
+
+  def experts(skill)
+    User.where(specialty: skill)
+  end
 
 end

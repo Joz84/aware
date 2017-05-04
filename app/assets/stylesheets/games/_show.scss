@@ -1,0 +1,15 @@
+.rating {
+  position: absolute;
+  top: 1px;
+  height: 14px;
+  border-radius: 50%;
+  width: 14px;
+  background-color: white;
+}
+.gauge {
+  width: 150px;
+  background-color: red;
+  height: 16px;
+  border-radius: 6px;
+  position: relative;
+}

@@ -1,7 +1,7 @@
 ActiveAdmin.register Challenge do
   permit_params :title,
                 :description,
-                :mission_id,
+                :visible,
                 :category_id
 
 end

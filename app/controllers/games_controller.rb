@@ -1,18 +1,14 @@
 class GamesController < ApplicationController
   def create
     @challenge = Challenge.find_by(title: params["commit"])
-    @game = Game.create(  user: current_user, challenge: @challenge )
-    @challenge.skills.each do |skill|
-
-      mentor = User.joins(:game_skills)
-                   .where(game_skills: { skill: skill, rating: 10 })
-                   .select{ |u| u != current_user }
-                   .first
-      GameSkill.create( game: @game,
-                        skill: skill,
-                        mentor: mentor,
-                        rating: 0
-                      )
+    @game = Game.find_by(  user: current_user, challenge: @challenge )
+    unless @game
+      @game = Game.create(  user: current_user, challenge: @challenge )
+      @challenge.skills.each do |skill|
+        mentors = current_user.potential_mentors(skill)
+        mentor = mentors ? mentors.sample : skill.experts.sample
+        GameSkill.create( game: @game, skill: skill, mentor: mentor )
+      end
     end
     redirect_to @game
   end

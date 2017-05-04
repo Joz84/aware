@@ -1,8 +1,22 @@
-<div class="aware-wrapper bg-orange game-show">
+<div class="aware-wrapper bg-orange">
 
-  <h2>Nom de la mission : <%= @game.challenge.mission.title %></h2>
+  <h2><%= @game.challenge.title %></h2>
 
-  <h1>Grâce à cette mission tu développeras ces compétences</h1>
+    <p><%= @game.challenge.description %></p>
+
+  <% if @game.constraint %>
+    <p>avec comme defi :</p>
+    <p><%= @game.constraint.title %></p>
+    <p>A toi de jouer!</p>
+  <% else %>
+  <!-- Button trigger modal -->
+    <h2>HÉHÉ TU VEUX ÊTRE UN WINNER ?</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      CLIC ICI!
+    </button>
+  <% end %>
+
+  <h1>Grâce à cette action tu développeras ces compétences</h1>
 
 
   <div class="container">
@@ -11,10 +25,12 @@
       <div class="row">
         <div class="col-xs-4">
           <p class="game-show"><%= gskill.skill.title %></p>
+          <p class="game-show"><%= gskill.rating %></p>
         </div>
-      <!--   <div class="col-xs-6 rating"><%= gskill.rating %></div> -->
-      <div class="col-xs-6 rating">
-        .
+      <div class="col-xs-6">
+        <div class="gauge">
+          <div class="rating" style="left: <%= gskill.rating ? (gskill.rating * 14.2) : 0 %>px"></div>
+        </div>
       </div>
       <!-- https://www.facebook.com/messages/t/566298426 -->
           <%= link_to "#", target: :_blank  do %>
@@ -24,23 +40,6 @@
     <% end %>
 
   </div>
-
-
-
-  <% if @game.constraint %>
-
-    <h2>VOICI LE DESCRIPTIF DE TA MISSION</h2>
-
-    <p>Tu dois travailler sur le storytelling d'un "vlog" avec comme contrainte :</p>
-    <p>contrainte: <%= @game.constraint.title %></p>
-    <p>A toi de jouer!</p>
-  <% else %>
-  <!-- Button trigger modal -->
-    <h2>HÉHÉ TU VEUX ÊTRE UN WINNER ?</h2>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      CLIC ICI!
-    </button>
-  <% end %>
 
 <div class="container" style="margin-top: 50px;">
     <div class="share-links">

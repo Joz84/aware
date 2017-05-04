@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502134958) do
+ActiveRecord::Schema.define(version: 20170504162748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,14 +64,13 @@ ActiveRecord::Schema.define(version: 20170502134958) do
   end
 
   create_table "challenges", force: :cascade do |t|
-    t.integer  "mission_id"
     t.integer  "category_id"
     t.string   "title"
     t.text     "description"
+    t.boolean  "visible"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["category_id"], name: "index_challenges_on_category_id", using: :btree
-    t.index ["mission_id"], name: "index_challenges_on_mission_id", using: :btree
   end
 
   create_table "constraints", force: :cascade do |t|
@@ -105,20 +104,12 @@ ActiveRecord::Schema.define(version: 20170502134958) do
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
   end
 
-  create_table "missions", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "visible"
-    t.text     "decription"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "skills", force: :cascade do |t|
     t.string   "title"
-    t.text     "decription"
+    t.text     "description"
     t.boolean  "labeled"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -148,14 +139,15 @@ ActiveRecord::Schema.define(version: 20170502134958) do
     t.string   "token"
     t.datetime "token_expiry"
     t.boolean  "admin",                  default: false, null: false
+    t.integer  "specialty_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["specialty_id"], name: "index_users_on_specialty_id", using: :btree
   end
 
   add_foreign_key "challenge_skills", "challenges"
   add_foreign_key "challenge_skills", "skills"
   add_foreign_key "challenges", "categories"
-  add_foreign_key "challenges", "missions"
   add_foreign_key "constraints", "challenges"
   add_foreign_key "game_skills", "games"
   add_foreign_key "game_skills", "skills"
