@@ -1,0 +1,23 @@
+<div class="aware-wrapper bg-orange">
+
+  <h1>Mes actions</h1>
+
+
+  <div class="container">
+
+    <div class="row">
+      <% @games.each do |game| %>
+        <div class="col-xs-12">
+        <%= link_to game do %>
+          <h2><%= game.challenge.title %> - <%= game.average %>/10
+            <% if game.done? %>
+              - Achevée
+            <% end %>
+          </h2>
+          <p><%= game.challenge.description %></p>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

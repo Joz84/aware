@@ -58,17 +58,30 @@ class User < ApplicationRecord
         .select { |user| user.mentor?(skill) }
   end
 
+  def validated_skills
+    Skill.joins(:game_skills)
+         .where.not(game_skills: {rating: nil})
+         .joins(:games)
+         .where(games: {user: u})
+         .uniq
+  end
+
+
   def ratings(skill)
-    ratings = GameSkill.where(skill: skill)
-                       .where.not(rating: nil)
-                       .joins(:game)
-                       .where(games: {user: self})
-                       .map(&:rating)
+    GameSkill.where(skill: skill)
+             .where.not(rating: nil)
+             .joins(:game)
+             .where(games: {user: self})
+             .map(&:rating)
+  end
+
+  def number_actions_with(skill)
+    ratings(skill).size
   end
 
   def average(skill)
     ratings = ratings(skill)
-    ratings.size >= 3 ? ratings.reduce(:+).to_f / ratings.size : false
+    ratings.size >= 3 ? (ratings.reduce(:+).to_f / ratings.size).round(2) : false
   end
 
   def mentor?(skill)

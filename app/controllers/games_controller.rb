@@ -23,4 +23,8 @@ class GamesController < ApplicationController
     @game.update(constraint: constraint)
     redirect_to @game
   end
+
+  def index
+    @games = current_user.games
+  end
 end
