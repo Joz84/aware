@@ -1,0 +1,22 @@
+<div class="aware-wrapper bg-blue">
+
+  <div class="container">
+    <h1>
+      <%= current_user.first_name %>
+    </h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= link_to "Mes compétences", skills_path, class: "aware-button btn btn-default"  %>
+      </div>
+      <div class="col-xs-12">
+        <%= link_to "Mes actions", games_path, class: "aware-button btn btn-default"  %>
+      </div>
+      <div class="col-xs-12">
+        <%= link_to "Mes mentorings", mentorings_path, class: "aware-button btn btn-default"  %>
+      </div>
+    </div>
+
+  </div>

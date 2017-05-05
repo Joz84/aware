@@ -5,9 +5,10 @@ class UsersController < ApplicationController
   #   redirect_to edit_user_path(current_user)
   # end
 
-  # def show
-  #   @user = User.find(params[:id])
-  # end
+  def show
+  end
+
+
 
   # def edit
   #   @user = current_user

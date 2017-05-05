@@ -3,4 +3,9 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def mentorings
+    @mentorings = current_user.mentor_game_skills
+  end
+
 end

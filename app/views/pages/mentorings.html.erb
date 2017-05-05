@@ -1,0 +1,35 @@
+<div class="aware-wrapper bg-orange">
+
+  <h1>Mes mentorings</h1>
+
+
+  <div class="container">
+
+    <div class="row">
+      <% @mentorings.each do |mentoring| %>
+        <div class="col-xs-12">
+          <h2><%= mentoring.user.first_name %> -
+          <% if mentoring.rating %>
+            <%= mentoring.rating %>/10
+          <% else %>
+
+            <%= simple_form_for mentoring do |f| %>
+              <%= f.input :rating %>
+              <%= f.submit "Noter" %>
+            <% end %>
+
+
+
+          <% end %>
+          </h2>
+          <h3><%= mentoring.skill.title %> </h3>
+          <h4><%= mentoring.challenge.title %></h4>
+          <p><%= mentoring.challenge.description %></p>
+        <%= link_to "Discuter", game_skill_messages_path(mentoring), class: "btn btn-default" %>
+        <p><%= link_to "Lien vers le projet", "#" %></p>
+        <hr>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
